@@ -61,12 +61,12 @@ app.put("/repositories/:id", checkExistsRepositories, (request, response) => {
   return response.json(repository);
 });
 
-app.delete("/repositories/:id", checkExistsRepositories, (request, response) => {
-  const { id } = request.params;
-
+app.delete("/repositories/:id",checkExistsRepositories, (request, response) => {
   const {repository} = request
 
-  repositories.splice(repository, 1);
+  const index = repositories.indexOf(repository)
+  
+  repositories.splice(index, 1);
 
   return response.status(204).send();
 });
